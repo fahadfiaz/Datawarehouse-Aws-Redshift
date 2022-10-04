@@ -1,15 +1,15 @@
 # Project: Data Warehouse
------
+
 ETL pipeline that extracts the data from S3, stages them in Redshift, and transforms data into a set of dimensional tables for the Sparkify startup analytics team to continue finding insights into what songs their users are listening to.
 
 ## Introduction
-----
+
 A music streaming startup, Sparkify, has grown their user base and song database and want to move their processes and data onto the cloud. Their data resides in S3, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
 
 As their data engineer, my task is to build an ETL pipeline that extracts their data from S3, stages them in Redshift, and transforms data into a set of dimensional tables for their analytics team to continue finding insights into what songs their users are listening to. I will be testing my database and ETL pipeline by running queries given to me by the analytics team from Sparkify and compare your results with their expected results.
 
 ## Datasets
----
+
 Following two datasets are used to ingest the data into data warehouse. Each dataset resides in S3 bucket: 
 1) **Song Dataset**: The first dataset is a subset of real data from the Million Song Dataset. Each file is in JSON format and contains metadata about a song and the artist of that song. The files are partitioned by the first three letters of each song's track ID.
 
@@ -35,7 +35,7 @@ Using the song and log datasets, I created a star schema optimized for queries o
 - The **time** dimension table stores timestamps of records in songplays broken down into specific units
 
 ## Description of the Project Files
----
+
 1) **sql_queries.py**: This file contain queries to create and drop the staging, fact and dimension tables. It also contain queries that copies data from s3 buckets into staging tables and then insert data from staging tables into fact and dimension tables.
 
 2) **create_tables.py**: This file drops and creates staging, fact and dimension tables in Amazon Redshift.
@@ -45,7 +45,7 @@ Using the song and log datasets, I created a star schema optimized for queries o
 4) **dhw.cfg**: This file contains the credentials to AWS Redshift.
 
 ## Instructions to run python scripts
----
+
 First we need to setup the Aws Redshift Cluster and insert the credentials to AWS Redshift into ```dhw.cfg``` file. Then run the following files:
 - python3 create_tables.py: Create all the required tables in the database
 - python3 etl.py: ETL pipeline that loads data from S3 bucket into staging tables on Redshift and then process it into the star schema tables on Redshift for further analysis
